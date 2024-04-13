@@ -3,10 +3,9 @@ class SlitherAnalyzer < Formula
 
   desc "Solidity static analysis framework written in Python 3"
   homepage "https://github.com/crytic/slither"
-  url "https://files.pythonhosted.org/packages/1d/62/6963e21c75a783de0683fe9267c827a93dc5294dcc0001bf52bf3a9ff809/slither-analyzer-0.10.1.tar.gz"
-  sha256 "b99b81dfe949238e15e48d2ca9b3e756144a194f3a25c7d61c22712b2f99e9a6"
+  url "https://files.pythonhosted.org/packages/fa/73/f27511e80a806e72a61b35e928ea07a6c5a685b708302f7e5aa6e7d0f9e4/slither-analyzer-0.10.2.tar.gz"
+  sha256 "d09c22988d620fc7678a735537729c8f3a33f6a6041c5adff2cbfd8e8d553b0d"
   license "AGPL-3.0-only"
-  revision 1
   head "https://github.com/crytic/slither.git", branch: "master"
 
   bottle do
@@ -20,12 +19,13 @@ class SlitherAnalyzer < Formula
   end
 
   depends_on "rust" => :build # for rpds-py
+  depends_on "blst"
   depends_on "certifi"
   depends_on "python@3.12"
 
   resource "aiohttp" do
-    url "https://files.pythonhosted.org/packages/18/93/1f005bbe044471a0444a82cdd7356f5120b9cf94fe2c50c0cdbf28f1258b/aiohttp-3.9.3.tar.gz"
-    sha256 "90842933e5d1ff760fae6caca4b2b3edba53ba8f4b71e95dacf2818a2aca06f7"
+    url "https://files.pythonhosted.org/packages/7e/0b/4235b25496c741f4c9f75a94951fbc15c48537349a03448687fb226256ef/aiohttp-3.9.4.tar.gz"
+    sha256 "6ff71ede6d9a5a58cfb7b6fffc83ab5d4a63138276c771ac91ceaaddf5459644"
   end
 
   resource "aiosignal" do
@@ -44,8 +44,8 @@ class SlitherAnalyzer < Formula
   end
 
   resource "cbor2" do
-    url "https://files.pythonhosted.org/packages/ca/39/0d0a29671be102bd0c717c60f9c805b46042ff98d4a63282cfaff3704b45/cbor2-5.6.2.tar.gz"
-    sha256 "b7513c2dea8868991fad7ef8899890ebcf8b199b9b4461c3c11d7ad3aef4820d"
+    url "https://files.pythonhosted.org/packages/15/40/167a05149eff1c0b7d19e27d0e1c96a463c5f670f879bffb7d124e3a6539/cbor2-5.6.3.tar.gz"
+    sha256 "e6f0ae2751c2d333a960e0807c0611494eb1245631a167965acbc100509455d3"
   end
 
   resource "charset-normalizer" do
@@ -53,9 +53,15 @@ class SlitherAnalyzer < Formula
     sha256 "f30c3cb33b24454a82faecaf01b19c18562b1e89558fb6c56de4d9118a032fd5"
   end
 
+  # pypi source issue report, https://github.com/ethereum/c-kzg-4844/issues/414
+  resource "ckzg" do
+    url "https://github.com/ethereum/c-kzg-4844/archive/refs/tags/v1.0.1.tar.gz"
+    sha256 "39c5ebe193e91d9252d72547ce78c7d22800631fe0f0a0672bffc9a909d8553b"
+  end
+
   resource "crytic-compile" do
-    url "https://files.pythonhosted.org/packages/76/07/b629a6bf2c56f63bb6cd1b2000e58395642dcd72ebae746282a58c0feb3f/crytic-compile-0.3.6.tar.gz"
-    sha256 "9a53c8913daadfd0f67e288acbe9e74130fe52cc344849925e6e969abc1b8340"
+    url "https://files.pythonhosted.org/packages/54/f8/6833fb37702900711e5617e0594e2eeccbb0b716993e84b00ee186907e1c/crytic-compile-0.3.7.tar.gz"
+    sha256 "c7713d924544934d063e68313da8d588a3ad82cd4f40eae30d99f2dd6e640d4b"
   end
 
   resource "cytoolz" do
@@ -64,13 +70,13 @@ class SlitherAnalyzer < Formula
   end
 
   resource "eth-abi" do
-    url "https://files.pythonhosted.org/packages/b2/cb/370191e5445b3cbac2e6cb2023aa6ec232bbfa683d80909c884b2b0c2c62/eth_abi-5.0.1.tar.gz"
-    sha256 "e9425110c6120c585c9f0db2e8a33d76c4b886b148a65e68fc0035d3917a3b9c"
+    url "https://files.pythonhosted.org/packages/91/f7/dc714b95d07ee825f60fc62c26822a5da44b4930d362f8f5ab69eb2d7403/eth_abi-5.1.0.tar.gz"
+    sha256 "33ddd756206e90f7ddff1330cc8cac4aa411a824fe779314a0a52abea2c8fc14"
   end
 
   resource "eth-account" do
-    url "https://files.pythonhosted.org/packages/9a/28/d188a0b35efe132a48c0fcb52bcb7f350452e8d63920f7dd8f0fceab37cd/eth-account-0.11.0.tar.gz"
-    sha256 "2ffc7a0c7538053a06a7d11495c16c7ad9897dd42be0f64ca7551e9f6e0738c3"
+    url "https://files.pythonhosted.org/packages/fe/f8/b61f045fd2b018e1967b1f46921396e469fb78314699f35f7f6db2059c24/eth-account-0.11.2.tar.gz"
+    sha256 "b43daf2c0ae43f2a24ba754d66889f043fae4d3511559cb26eb0122bae9afbbd"
   end
 
   resource "eth-hash" do
@@ -94,13 +100,13 @@ class SlitherAnalyzer < Formula
   end
 
   resource "eth-typing" do
-    url "https://files.pythonhosted.org/packages/07/8c/607509f95e8924bfb6053a1fc282fee9d1673590c1c534bb82843e4d6368/eth-typing-4.0.0.tar.gz"
-    sha256 "9af0b6beafbc5c2e18daf19da5f5a68315023172c4e79d149e12ad10a3d3f731"
+    url "https://files.pythonhosted.org/packages/6e/2d/f6e4d2992dc1120914c3c55601b4c0fff7eff72f5257dd891d30d07d45ff/eth-typing-4.1.0.tar.gz"
+    sha256 "ed52b0c6b049240fd810bc87c8857c7ea39370f060f70b9ca3876285269f2938"
   end
 
   resource "eth-utils" do
-    url "https://files.pythonhosted.org/packages/93/78/0c6c891655021288461c9f622205888da9017cbaeeb811ebc384ba8b8d54/eth-utils-4.0.0.tar.gz"
-    sha256 "58f9c57900e0f430be728a5e976dc6ed51f493a61e8a4ff1f73c043832cd4f2f"
+    url "https://files.pythonhosted.org/packages/37/70/90dc5a3869dc3612c7ac9dabf3ae212450060f176a16ef4e623a4fa5f6e8/eth-utils-4.1.0.tar.gz"
+    sha256 "c170168198ddecac1ea911f74937e9364de81dbd03f42450fe40725c4d6e6220"
   end
 
   resource "frozenlist" do
@@ -114,8 +120,8 @@ class SlitherAnalyzer < Formula
   end
 
   resource "idna" do
-    url "https://files.pythonhosted.org/packages/bf/3f/ea4b9117521a1e9c50344b909be7886dd00a519552724809bb1f486986c2/idna-3.6.tar.gz"
-    sha256 "9ecdbbd083b06798ae1e86adcbfe8ab1479cf864e4ee30fe4e46a003d12491ca"
+    url "https://files.pythonhosted.org/packages/21/ed/f86a79a07470cb07819390452f178b3bef1d375f2ec021ecfc709fc7cf07/idna-3.7.tar.gz"
+    sha256 "028ff3aadf0609c1fd278d8ea3089299412a7a8b9bd005dd08b9f8285bcb5cfc"
   end
 
   resource "jsonschema" do
@@ -139,13 +145,13 @@ class SlitherAnalyzer < Formula
   end
 
   resource "packaging" do
-    url "https://files.pythonhosted.org/packages/fb/2b/9b9c33ffed44ee921d0967086d653047286054117d584f1b1a7c22ceaf7b/packaging-23.2.tar.gz"
-    sha256 "048fb0e9405036518eaaf48a55953c750c11e1a1b68e0dd1a9d62ed0c092cfc5"
+    url "https://files.pythonhosted.org/packages/ee/b5/b43a27ac7472e1818c4bafd44430e69605baefe1f34440593e0332ec8b4d/packaging-24.0.tar.gz"
+    sha256 "eb82c5e3e56209074766e6885bb04b8c38a0c015d0a30036ebe7ece34c9989e9"
   end
 
   resource "parsimonious" do
-    url "https://files.pythonhosted.org/packages/ad/03/2d8d0ac1c3107945956bcef379ae11b4ecd7898147f1719911e7684afca1/parsimonious-0.9.0.tar.gz"
-    sha256 "b2ad1ae63a2f65bd78f5e0a8ac510a98f3607a43f1db2a8d46636a5d9e4a30c1"
+    url "https://files.pythonhosted.org/packages/7b/91/abdc50c4ef06fdf8d047f60ee777ca9b2a7885e1a9cea81343fbecda52d7/parsimonious-0.10.0.tar.gz"
+    sha256 "8281600da180ec8ae35427a4ab4f7b82bfec1e3d1e52f80cb60ea82b9512501c"
   end
 
   resource "prettytable" do
@@ -154,8 +160,8 @@ class SlitherAnalyzer < Formula
   end
 
   resource "protobuf" do
-    url "https://files.pythonhosted.org/packages/5e/d8/65adb47d921ce828ba319d6587aa8758da022de509c3862a70177a958844/protobuf-4.25.3.tar.gz"
-    sha256 "25b5d0b42fd000320bd7830b349e3b696435f3b329810427a6bcce6a5492cc5c"
+    url "https://files.pythonhosted.org/packages/d2/e5/7e22ca7201a6b1040aae7787d0fe6cd970311da376a86fdafa5182be1d1b/protobuf-5.26.1.tar.gz"
+    sha256 "8ca2a1d97c290ec7b16e4e5dff2e5ae150cc1582f55b5ab300d45cb0dfa90e51"
   end
 
   resource "pycryptodome" do
@@ -169,8 +175,8 @@ class SlitherAnalyzer < Formula
   end
 
   resource "referencing" do
-    url "https://files.pythonhosted.org/packages/21/c5/b99dd501aa72b30a5a87d488d7aa76ec05bdf0e2c7439bc82deb9448dd9a/referencing-0.33.0.tar.gz"
-    sha256 "c775fedf74bc0f9189c2a3be1c12fd03e8c23f4d371dce795df44e06c5b412f7"
+    url "https://files.pythonhosted.org/packages/59/d7/48b862b8133da2e0ed091195028f0d45c4d0be0f7f23dbe046a767282f37/referencing-0.34.0.tar.gz"
+    sha256 "5773bd84ef41799a5a8ca72dc34590c041eb01bf9aa02632b4a973fb0181a844"
   end
 
   resource "regex" do
@@ -204,8 +210,8 @@ class SlitherAnalyzer < Formula
   end
 
   resource "typing-extensions" do
-    url "https://files.pythonhosted.org/packages/16/3a/0d26ce356c7465a19c9ea8814b960f8a36c3b0d07c323176620b7b483e44/typing_extensions-4.10.0.tar.gz"
-    sha256 "b0abd7c89e8fb96f98db18d86106ff1d90ab692004eb746cf6eda2682f91b3cb"
+    url "https://files.pythonhosted.org/packages/f6/f3/b827b3ab53b4e3d8513914586dcca61c355fa2ce8252dea4da56e67bf8f2/typing_extensions-4.11.0.tar.gz"
+    sha256 "83f085bd5ca59c80295fc2a82ab5dac679cbe02b9f33f7d83af68e241bea51b0"
   end
 
   resource "urllib3" do
@@ -219,8 +225,8 @@ class SlitherAnalyzer < Formula
   end
 
   resource "web3" do
-    url "https://files.pythonhosted.org/packages/01/69/ce305279450e9d033e3ee7223deaa6971d70c7445d9bb955d4700b667ef3/web3-6.15.1.tar.gz"
-    sha256 "f9e7eefc1b3c3d194868a4ef9583b625c18ea3f31a48ebe143183db74898f381"
+    url "https://files.pythonhosted.org/packages/6e/5f/8193419ab32f9bf137f981f47fa1d81fd4f647e5dd505828f16a405d50ce/web3-6.17.0.tar.gz"
+    sha256 "1b535272a40da3d8d2b120856edb53b84b0c08bcc8fe1a5bbd5f816fd72f4ec6"
   end
 
   resource "websockets" do
@@ -233,15 +239,11 @@ class SlitherAnalyzer < Formula
     sha256 "566db86717cf8080b99b58b083b773a908ae40f06681e87e589a976faf8246bf"
   end
 
-  # Drop setuptools dep
-  # https://github.com/crytic/slither/pull/2290
-  patch do
-    url "https://github.com/crytic/slither/commit/93cbf7d887a930e20c1ea8cf543ec2f41e84aadd.patch?full_index=1"
-    sha256 "6c6278b86c8d75fb01a50715a8891ab8a94ec6d4372092440f1cefd67fbe0940"
-  end
-
   def install
-    virtualenv_install_with_resources
+    venv = virtualenv_create(libexec, "python3.12")
+    resource("ckzg").stage { venv.pip_install "bindings/python" }
+    venv.pip_install resources.reject { |r| r.name == "ckzg" }
+    venv.pip_install_and_link buildpath
   end
 
   test do
