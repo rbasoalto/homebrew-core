@@ -23,23 +23,34 @@ class SevenKingdoms < Formula
   end
 
   depends_on "pkg-config" => :build
-  depends_on "enet"
-  depends_on "gettext"
   depends_on "sdl2"
+
   uses_from_macos "curl"
 
   on_macos do
-    depends_on "gcc"
+    depends_on "gettext"
   end
 
   on_linux do
     depends_on "openal-soft"
   end
 
-  fails_with :clang
+  # Multiplayer support requires -mfpmath=387. Otherwise it is automatically
+  # disabled, which also disables `enet` and `curl` usage.
+  on_intel do
+    depends_on "enet"
+
+    on_macos do
+      depends_on "gcc"
+    end
+
+    fails_with :clang do
+      cause "needs support for -mfpmath=387"
+    end
+  end
 
   def install
-    system "./configure", *std_configure_args
+    system "./configure", "--disable-silent-rules", *std_configure_args
     system "make"
     system "make", "install"
   end
