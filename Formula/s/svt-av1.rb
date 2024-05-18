@@ -1,8 +1,8 @@
 class SvtAv1 < Formula
   desc "AV1 encoder"
   homepage "https://gitlab.com/AOMediaCodec/SVT-AV1"
-  url "https://gitlab.com/AOMediaCodec/SVT-AV1/-/archive/v2.0.0/SVT-AV1-v2.0.0.tar.bz2"
-  sha256 "f9c076c377e504be15e195db8dd36d91233bc37cb8e82530382f38bc1926df02"
+  url "https://gitlab.com/AOMediaCodec/SVT-AV1/-/archive/v2.1.0/SVT-AV1-v2.1.0.tar.bz2"
+  sha256 "2bfd098770bba185cd1ced8e1ff389837e3dca0d8b5cfb0d97c925a61dbbf955"
   license "BSD-3-Clause"
   head "https://gitlab.com/AOMediaCodec/SVT-AV1.git", branch: "master"
 
@@ -17,10 +17,7 @@ class SvtAv1 < Formula
   end
 
   depends_on "cmake" => :build
-
-  on_intel do
-    depends_on "yasm" => :build
-  end
+  depends_on "nasm" => :build
 
   resource "homebrew-testvideo" do
     url "https://github.com/grusell/svt-av1-homebrew-testdata/raw/main/video_64x64_yuv420p_25frames.yuv"
