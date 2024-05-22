@@ -2123,6 +2123,7 @@ stow
 strace
 streamlink
 stress-ng
+stripe-cli
 stripe-mock
 strongswan
 structurizr-cli
